@@ -1,17 +1,11 @@
 'use strict' //Força o JavaScript a ser critérioso (ponto e virgula e etc)
 
 //Importando pacotes (Elas vem da pasta node_modules)
-const http = require('http');
-//const debug = require('debug')('SisAss:server'); //olha aula 3 qualquer coisa
-const express = require('express');
 
 //configurando a porta do servidor
-const app = express();
-const port = 3000;
-app.set('port', port);
+const express = require('express');
 
-//Instânciando o servidor
-const server = http.createServer(app);
+const app = express();
 const router = express.Router();
 
 //Rotas
@@ -24,5 +18,4 @@ const route = router.get('/', (req, res, next) => {
 
 app.use('/', route);
 
-server.listen(port); //aonde aponta e fica ouvindo a porta que definimos
-console.log('Ta funcionando carai!!!!! '+ port);
+module.exports = app;
