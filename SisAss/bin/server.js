@@ -1,5 +1,5 @@
 'use strict' //Força o JavaScript a ser critérioso (ponto e virgula e etc)
-
+// Nota! No package.json está o script "start": "node ./bin/server.js" dando um "npm start" você pode iniciar o servidor. Pode ser fazer vários scripts lá
 //Importando pacotes (Elas vem da pasta node_modules)
 const app = require('../src/app');
 const debug = require('debug')('SisAss:server'); //olha aula 3 qualquer coisa
@@ -64,5 +64,3 @@ function onListening() {
         : 'port ' + addr.port;
     debug('Listenig on' + bind);
 };
-
-
