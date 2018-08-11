@@ -4,6 +4,7 @@
 const app = require('../src/app');
 const debug = require('debug')('SisAss:server'); //olha aula 3 qualquer coisa
 const http = require('http');
+const express = require('express');
 
 
 //configurando a porta do servidor
