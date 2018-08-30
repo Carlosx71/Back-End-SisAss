@@ -8,7 +8,7 @@ const Schema = mongoose.Schema;
 //Este é o corpo da model
 const schema = new Schema({
     //mongo faz ID automaticamente
-    title: {
+    product : {
         type: String,
         required: true, // É requerida
         trim: true //não permite espaços
@@ -24,7 +24,27 @@ const schema = new Schema({
         type: String,
         required: true
     },
-    price: {
+    materiaPrima: {
+        type: String,
+        required: true
+    },
+    peso: {
+        type: Number,
+        required: true
+    },
+    dimensao: {
+        type: String,
+        required: true
+    },
+    segmento: {
+        type: String,
+        required: true
+    },
+    preco: {
+        type: Number,
+        required: true
+    },
+    quantidade: {
         type: Number,
         required: true
     },
