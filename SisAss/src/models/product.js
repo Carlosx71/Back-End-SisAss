@@ -8,9 +8,9 @@ const Schema = mongoose.Schema;
 //Este é o corpo da model
 const schema = new Schema({
     //mongo faz ID automaticamente
-    product : {
+    product: {
         type: String,
-        required: true, // É requerida
+        required: true, // É requerido
         trim: true //não permite espaços
     },
     slug: { // O slug faz ficar desta maneira exemplo "cadeira gamer" = cadeira-gamer
