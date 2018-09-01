@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>RemoteSystemsTempFiles</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.rse.ui.remoteSystemsTempNature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>CSS.css</name>
+			<type>1</type>
+			<location>C:/Users/clever.moreira/git/SIASS-/SIASS/Forms/CSS/CSS.css</location>
+		</link>
+		<link>
+			<name>Home.html</name>
+			<type>1</type>
+			<location>C:/Users/clever.moreira/git/SIASS-/SIASS/Forms/Home.html</location>
+		</link>
+	</linkedResources>
+</projectDescription>

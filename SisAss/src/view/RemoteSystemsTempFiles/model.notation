@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/gmfdiag/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <notation:Diagram xmi:id="_hUFmYEKbEei4YrKVYXVyMA" type="UseCase" name="Use Case Diagram" measurementUnit="Pixel">
+    <styles xmi:type="notation:StringValueStyle" xmi:id="_hUFmYUKbEei4YrKVYXVyMA" name="diagram_compatibility_version" stringValue="1.3.0"/>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_hUFmYkKbEei4YrKVYXVyMA"/>
+    <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_hUFmY0KbEei4YrKVYXVyMA" diagramKindId="org.eclipse.papyrus.uml.diagram.useCase">
+      <owner xmi:type="uml:Model" href="model.uml#_hPUbIEKbEei4YrKVYXVyMA"/>
+    </styles>
+    <element xmi:type="uml:Model" href="model.uml#_hPUbIEKbEei4YrKVYXVyMA"/>
+  </notation:Diagram>
+  <notation:Diagram xmi:id="_hUZvcEKbEei4YrKVYXVyMA" type="PapyrusUMLClassDiagram" name="Class Diagram" measurementUnit="Pixel">
+    <styles xmi:type="notation:StringValueStyle" xmi:id="_hUZvcUKbEei4YrKVYXVyMA" name="diagram_compatibility_version" stringValue="1.3.0"/>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_hUZvckKbEei4YrKVYXVyMA"/>
+    <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_hUZvc0KbEei4YrKVYXVyMA" diagramKindId="org.eclipse.papyrus.uml.diagram.class">
+      <owner xmi:type="uml:Model" href="model.uml#_hPUbIEKbEei4YrKVYXVyMA"/>
+    </styles>
+    <element xmi:type="uml:Model" href="model.uml#_hPUbIEKbEei4YrKVYXVyMA"/>
+  </notation:Diagram>
+  <notation:Diagram xmi:id="_hWc94EKbEei4YrKVYXVyMA" type="PapyrusUMLSequenceDiagram" name="Sequence Diagram" measurementUnit="Pixel">
+    <children xmi:type="notation:Shape" xmi:id="_hWc94UKbEei4YrKVYXVyMA" type="Interaction_Shape">
+      <children xmi:type="notation:DecorationNode" xmi:id="_hWc94kKbEei4YrKVYXVyMA" type="Interaction_NameLabel"/>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_hWc940KbEei4YrKVYXVyMA" type="Interaction_SubfragmentCompartment">
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_hWc95EKbEei4YrKVYXVyMA"/>
+      </children>
+      <element xmi:type="uml:Interaction" href="model.uml#_hVGTAEKbEei4YrKVYXVyMA"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_hWc95UKbEei4YrKVYXVyMA"/>
+    </children>
+    <styles xmi:type="notation:StringValueStyle" xmi:id="_hWc95kKbEei4YrKVYXVyMA" name="diagram_compatibility_version" stringValue="1.3.0"/>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_hWc950KbEei4YrKVYXVyMA"/>
+    <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_hWc96EKbEei4YrKVYXVyMA" diagramKindId="org.eclipse.papyrus.uml.diagram.sequence">
+      <owner xmi:type="uml:Model" href="model.uml#_hPUbIEKbEei4YrKVYXVyMA"/>
+    </styles>
+    <element xmi:type="uml:Interaction" href="model.uml#_hVGTAEKbEei4YrKVYXVyMA"/>
+  </notation:Diagram>
+</xmi:XMI>
