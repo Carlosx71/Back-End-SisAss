@@ -1,2 +1,2 @@
 # Back-End-SisAss
-Estuando o novo back end da app SisAss
+Estudando o novo back end da app SisAss
