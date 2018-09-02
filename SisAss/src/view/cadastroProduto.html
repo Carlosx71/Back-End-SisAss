@@ -114,45 +114,45 @@
         <div class="containerBody">
             <h2>Cadastro de Produto</h2>
 
-            <form class="needs-validation" novalidate>
+            <form class="needs-validation" action="/products" method="POST">
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label for="product">Nome do Produto</label>
-                        <input type="text" class="form-control" id="product" placeholder="Nome do Produto" required>
+                        <input type="text" class="form-control" id="product" name="product" placeholder="Nome do Produto" required>
                         <div class="valid-tooltip">
                             ótimo
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="materiaPrima">Matéria Prima</label>
-                        <input type="text" class="form-control" id="materiaPrima" placeholder="Matéria Prima" required>
+                        <input type="text" class="form-control" id="materiaPrima" name="materiaPrima" placeholder="Matéria Prima" required>
                         <div class="valid-tooltip">
                             ótimo
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="peso">Peso</label>
-                        <input type="email" class="form-control" id="peso" placeholder="Peso">
+                        <input type="text" class="form-control" id="peso" name="peso" placeholder="Peso">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
                         <label for="dimensao">Dimensão</label>
-                        <input type="text" class="form-control" id="dimensao" placeholder="Dimensão" required>
+                        <input type="text" class="form-control" id="dimensao" name="dimensao" placeholder="Dimensão" required>
                         <div class="invalid-tooltip">
                             Por favor, insira uma cidade
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="segmento">Segmento</label>
-                        <input type="text" class="form-control" id="segmento" placeholder="Segmento" required>
+                        <input type="text" class="form-control" id="segmento" name="segmento" placeholder="Segmento" required>
                         <div class="invalid-tooltip">
                             Insira um estado válido.
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="preco">Preço</label>
-                        <input type="text" class="form-control" id="preco" placeholder="00,00" required>
+                        <input type="text" class="form-control" id="preco" name="preco" placeholder="00,00" required>
                         <div class="invalid-tooltip">
                             Insira um valor valido.
                         </div>
@@ -162,21 +162,21 @@
                     <div class="col-md-8 mb-3">
                         <div class="form-group">
                             <label for="descricao">Descrição</label>
-                            <textarea class="form-control" id="descricao" rows="3"></textarea>
+                            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
                         </div>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
                         <label for="artesao">Artesão</label>
-                        <input type="text" class="form-control" id="artesao" placeholder="Vincule um Artesão" required>
+                        <input type="text" class="form-control" id="artesao" name="artesao" placeholder="Vincule um Artesão" >
                         <div class="invalid-tooltip">
                             Por favor, insira uma artesão.
                         </div>
                     </div>
                     <div class="col-md-2 mb-3">
                         <label for="quantidade">Quantidade</label>
-                        <input type="text" class="form-control" id="quantidade" placeholder="quantidade" required>
+                        <input type="text" class="form-control" id="quantidade" name="quantidade" placeholder="quantidade" required>
                         <div class="invalid-tooltip">
                             Por favor, insira uma quantidade.
                         </div>

@@ -13,13 +13,13 @@ const schema = new Schema({
         required: true, // É requerido
         trim: true //não permite espaços
     },
-    slug: { // O slug faz ficar desta maneira exemplo "cadeira gamer" = cadeira-gamer
+    /*slug: { // O slug faz ficar desta maneira exemplo "cadeira gamer" = cadeira-gamer
         type: String,
-        required: [true, 'O slug é obrigatório'],
+        required: [false, 'O slug é obrigatório'],
         trim: true,
         index: true, // precisa de um indice por que precisa fazer uma busca por ele.
         unique: true //precisa ser único
-    },
+    },*/
     description: {
         type: String,
         required: true
