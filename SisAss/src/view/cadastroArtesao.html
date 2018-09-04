@@ -120,7 +120,7 @@
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label for="nomeArtesao">Nome do Artesão</label>
-                        <input type="text" class="form-control" id="nomeArtesao" placeholder="Nome do Artesao" required>
+                        <input type="text" class="form-control" id="nomeArtesao" name="nomeArtesao" placeholder="Nome do Artesao" required>
                         <div class="valid-tooltip">
                             Campo Obrigatório
                         </div>
@@ -153,7 +153,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-4 mb-3">
                         <label for="naturalidadeUF">UF Naturalidade</label>
-                        <select id="naturalidadeUF" class="form-control" required>
+                        <select id="naturalidadeUF" class="form-control" id="naturalidadeUF" name="naturalidadeUF" required>
                             <option selected>Estado</option>
                             <option value="Acre">Acre</option>
                             <option value="Alagoas">Alagoas</option>
@@ -186,7 +186,7 @@
                     </div>
                     <div class="form-group col-md-4 mb-3">
                         <label for="naturalidadeMU">Municípios</label>
-                        <select id="naturalidadeMU" class="form-control" required>
+                        <select id="naturalidadeMU" class="form-control" id="naturalidadeMU" name="naturalidadeMU" required>
                             <option selected>Municípios</option>
                             <option value="Acre">Acre</option>
                             <option value="Alagoas">Alagoas</option>
@@ -231,7 +231,7 @@
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
                         <label for="cepArtesao">CEP</label>
-                        <input type="text " class="form-control" id="cepArtesao" placeholder="00000-000" required>
+                        <input type="text " class="form-control" id="cepArtesao" placeholder="00000-000" onblur="pesquisacep(this.value);" required>
                         <div class="invalid-tooltip">
                             Insira CEP válido.
                         </div>
@@ -245,9 +245,9 @@
                     </div>
                     <div class="col-md-1 mb-3">
                             <label for="numeroEnd">Nº</label>
-                            <input type="text" class="form-control " id="numeroEnd" name="numeroEnd" placeholder="Rua" required>
+                            <input type="text" class="form-control " id="numeroEnd" name="numeroEnd" placeholder="Número" required>
                             <div class="invalid-tooltip">
-                                Por favor, insira um número
+                                Por favor, insira um rua
                             </div>
                     </div>
                     <div class="col-md-2 mb-3">
@@ -274,8 +274,8 @@
                             </div>
                         </div>
                     <div class="col-md-3 mb-3">
-                        <label for="estadoArtesao">Estado</label>
-                        <input type="text" class="form-control" id="estadoArtesao" name="estadoArtesao" placeholder="Estado" required>
+                        <label for="uf">Estado</label>
+                        <input type="text" class="form-control" id="uf" name="uf" placeholder="Estado" required>
                         <div class="invalid-tooltip ">
                             Insira um estado válido.
                         </div>
@@ -314,6 +314,7 @@
         crossorigin="anonymous "></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous "></script>
+    <script src="js/customJavaScript.js"></script>
 </body>
 
 </html>
