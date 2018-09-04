@@ -19,11 +19,13 @@ app.use(express.static('../src/view/'));
 
 //carregar rotas que estão em index
 const indexRoute = require('./routes/index-route');
+//carregar rotas de products
 const productRoute = require('./routes/products-route');
 
 app.use(bodyParser.json()); //converte todo conteudo do corpo(corpo da requisição) pra Json
 app.use(bodyParser.urlencoded({ extended: false })); //codifica URL
 
+//Traz as rotas
 app.use('/', indexRoute);
 app.use('/products', productRoute);
 
