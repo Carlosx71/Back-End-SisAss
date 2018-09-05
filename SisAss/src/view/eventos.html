@@ -114,6 +114,7 @@
         <div class="containerBody">
             <h2>Eventos</h2>
             <hr>
+            <h4>Dados do Evento</h4>
             <form class="needs-validation" novalidate>
                 <div class="form-row">
                     <div class="col-md-8 mb-3">
@@ -137,36 +138,64 @@
                         <input class="form-control" type="time" value="00:00:00" id="horaEvento">
                     </div>
                 </div>
+                <hr>
+                <h4>Endereço</h4>
+                <br>
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
-                        <label for="cidadeEvento">Cidade</label>
-                        <input type="text" class="form-control" id="cidadeEvento" placeholder="Cidade" required>
+                        <label for="cepArtesao">CEP</label>
+                        <input type="text " class="form-control" id="cepArtesao" placeholder="00000-000" onblur="pesquisacep(this.value);" required>
                         <div class="invalid-tooltip">
-                            Por favor, insira uma cidade
+                            Insira CEP válido.
                         </div>
                     </div>
-                    <div class="col-md-3 mb-3">
-                        <label for="enderecoEvento">Endereço</label>
-                        <input type="text" class="form-control" id="enderecoEvento" placeholder="Endereço" required>
+                    <div class="col-md-6 mb-3">
+                        <label for="rua">Rua</label>
+                        <input type="text" class="form-control" id="rua" placeholder="Rua" required>
                         <div class="invalid-tooltip">
-                            Por favor, insira um Endereço
+                            Por favor, insira uma rua
                         </div>
                     </div>
-                    <div class="col-md-3 mb-3">
-                        <label for="estadoEvento">Estado</label>
-                        <input type="text" class="form-control" id="estadoEvento" placeholder="Estado" required>
+                    <div class="col-md-1 mb-3">
+                        <label for="numeroEnd">Nº</label>
+                        <input type="text" class="form-control " id="numeroEnd" name="numeroEnd" placeholder="Nº" required>
                         <div class="invalid-tooltip">
+                            Por favor, insira um rua
+                        </div>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <label for="complemento">Complemento</label>
+                        <input type="text" class="form-control " id="complemento" name="complemento" placeholder="Complemento" required>
+                        <div class="invalid-tooltip">
+                            Por favor, insira um número
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-3 mb-3">
+                        <label for="bairro">Bairro</label>
+                        <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Bairro" required>
+                        <div class="invalid-tooltip ">
+                            Insira um estado válido.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="cidade">Cidade</label>
+                        <input type="text" class="form-control" id="cidade" name="cidade" placeholder="Cidade" required>
+                        <div class="invalid-tooltip ">
                             Insira um estado válido.
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label for="cepEvento">CEP</label>
-                        <input type="text" class="form-control" id="cepEvento" placeholder="00000-000" required>
-                        <div class="invalid-tooltip">
-                            Insira um CEP válido.
+                        <label for="uf">Estado</label>
+                        <input type="text" class="form-control" id="uf" name="uf" placeholder="Estado" required>
+                        <div class="invalid-tooltip ">
+                            Insira um estado válido.
                         </div>
                     </div>
+
                 </div>
+                <hr>
                 <button class="btn btn-primary" type="submit">Cadastrar</button>
         </div>
     </div>
@@ -179,6 +208,7 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
+    <script src="js/customJavaScript.js"></script>
 </body>
 
 </html>
