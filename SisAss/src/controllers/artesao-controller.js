@@ -14,8 +14,8 @@ exports.get = (req, res, next) => {
 //Rotas
 //Rota de criação //Status 201 = Create //Movido na aula 12
 exports.post = (req, res, next) => {
-    var product = Artesao(req.body); //passa o produto como corpo da requição
-    product
+    const artesao = Artesao(req.body); //passa o produto como corpo da requição
+    artesao
         .save() //Usado para salvar no mongoodb
         .then(x => {
             res.status(201).send({ message: 'Artesão cadastrado com sucesso' });
@@ -74,7 +74,42 @@ exports.getByTag = (req, res, next) => {
         });
 };*/
 
-//movido na aula 12
+/*/movido na aula 12
 exports.delete = (req, res, next) => {
     res.status(200).send(req.body);
+};*/
+
+/*exports.delete = (req, res, next) => {
+    Artesao
+    .findOneAndRemove(req.params.id)
+    .then(x => {
+        res.status(200).send({          
+            message: 'Deu certo caralho!!!!'
+        });
+    }).catch(e => {
+        res.status(400).send({
+            message: 'Mas que caralho, velho',
+            data: e
+        });
+    });
+
+};*/
+exports.delete = (req, res, next) => {
+
+    const { id } = req.params;
+    Artesao
+    .deleteOne({
+        _id: id
+    })
+    .then(x => {
+        res.status(200).send({          
+            message: 'Deu certo caralho!!!!'
+        });
+    }).catch(e => {
+        res.status(400).send({
+            message: 'Mas que caralho, velho',
+            data: e
+        });
+    });
+
 };

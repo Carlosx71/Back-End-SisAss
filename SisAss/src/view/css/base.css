@@ -42,6 +42,18 @@
     color: white;
     border-color: #28a745;
 }
+.list-group-item {
+    padding: 20px;
+    
+}
+li .btn-danger{
+    padding: 5px;
+    padding-right: 12px;
+    padding-left: 12px;
+    float: right;
+    margin-left: 5px;
+    background-color: red;
+}
 
 .btn-primary {
     background-color: rgb(40, 143, 68) !important;
