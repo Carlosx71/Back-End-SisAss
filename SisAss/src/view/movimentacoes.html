@@ -94,9 +94,23 @@
                                     Relatorio de Eventos</a>
                             </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#">
-                                <i class="fas fa-dollar-sign"></i>Movimentações</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-dollar-sign"></i>
+                                Movimentações
+      
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="movimentacoes.html">
+                                    <i class="far fa-calendar-alt"></i>
+                                    Cadastrar novo Evento
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">
+                                    <i class="far fa-chart-bar"></i>
+                                    Relatorio de Eventos</a>
+                            </div>
                         </li>
                     </ul>
                     <form class="form-inline my-2 my-lg-0">
@@ -114,8 +128,37 @@
     <!--Inicio do container-->
     <div class="container">
         <div class="containerBody">
-            <h1>Movimentações</h1>
-            <hr>
+            <div class="modal-body pt-5 pr-5 pb-5 pl-5">
+
+
+            <div class="form-group"> 
+                    <h2>Movimentação</h2>                
+                <div class="row">
+                        <span  class="col-xs-3 col-md-3">
+                                <label for="nome">Tipo de Movimentação</label>
+                                 <select type="text" class="form-control" id="nome" aria-describedby="Nome Help" placeholder="Nome da entrada">
+                                <option id="entrada">Entrada</option>
+                                <option id="saida">Saída</option>
+                                </select>
+                                <small id="nome" class="form-text text-muted">Digite o nome da entrada.</small>
+                         </span>
+                        <span class="col-xs-3 col-md-3">                                                           
+                                <label for="data">Data</label>
+                                <input type="date" class="form-control" id="data" aria-describedby="Data Help" placeholder="Data de entrada">
+                                <small id="data" class="form-text text-muted">Digite a data de entrada.</small>
+                        </span>
+               
+                        <span  class="col-xs-3 col-md-3">
+                             
+                                 <label for="valor">Valor</label>
+                                <input type="number" class="form-control" id="valor" aria-describedby="Valor Help" placeholder="Valor da entrada">
+                                 <small id="valor" class="form-text text-muted">Digite o valor entrada.</small>
+                        </span>                         
+
+             </div>
+                        
+            </div>
+            <button class="btn btn-primary" type="submit">Cadastrar</button>
         </div>
     </div>
 
