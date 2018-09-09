@@ -1925,3 +1925,59 @@ dgCidadesEstados.prototype = {
  * ######################## Fim da Validação automatica de cidades por Estado
  * ########################
  */
+
+ /*
+ ######################## Início da operação de delete * ########################*/
+
+        //Garanti que a função sera carregada
+        window.onload = () => {
+            const listaArtesao = document.querySelector('#lista');
+            listaArtesao.addEventListener('click', del);
+            read();
+        };
+
+        function templateLi(id, nome) {
+            return `
+            <li class="list-group-item"><b>${nome}</b>
+                <button type="button" class="btn btn-danger delete" data-id="${id}">
+                    <i class="fa fa-trash"></i>
+                </button>
+            </li>
+            `;
+        }
+
+        function read() {
+            lista.innerHTML = '';
+            //Chamada ajax para o servidor na rota /artesaos (Biblioteca Axios)
+            axios.get('/artesao')
+                .then((response) => {
+                    console.log(response);
+                    response.data.forEach(element => {
+                        lista.innerHTML += templateLi(element._id, element.nome);
+                    });
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
+        //Passa element como paramento para buscar a classe "delete"
+        function del(element) {
+            console.log(element);
+            //Verifica se existe a classe "delete"
+            if (element.target.classList.contains('delete')) {
+                //Busca o id que estao no atributo data-id
+                const id = element.target.dataset.id;
+                axios.delete(`artesao/${id}`)
+                    .then(function (response) {
+                        console.log(response);
+                        if (response.status = 200) {
+                            //busca o filho na propriedade path e exclui (no caso a li)
+                            lista.removeChild(element.path[1]);
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
+		}
+/*######################## Fim da operação de delete * ########################*/
