@@ -1,4 +1,4 @@
-# Back-End-SisAss
+# SisAss-PROD
 Estudando o novo back end da app SisAss
 
 Acesse o terminal e execute o comando <code>npm i -g nodemon</code> para instalar o nodemon como global.
