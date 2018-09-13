@@ -1926,26 +1926,31 @@ dgCidadesEstados.prototype = {
  * ########################
  */
 
- /*
- ######################## Início da operação de delete * ########################*/
-
         //Garanti que a função sera carregada
         window.onload = () => {
             const listaArtesao = document.querySelector('#lista');
-            listaArtesao.addEventListener('click', del);
+			listaArtesao.addEventListener('click', del);
+			listaArtesao.addEventListener('click', getArtesao);
             read();
         };
+/*
+ ######################## Criação do Templete da lista* ########################*/
 
         function templateLi(id, nome) {
             return `
             <li class="list-group-item"><b>${nome}</b>
                 <button type="button" class="btn btn-danger delete" data-id="${id}">
-                    <i class="fa fa-trash"></i>
-                </button>
-            </li>
+                    <i class="fa fa-trash delete" data-id="${id}"></i>
+				</button>
+                <button type="button" class="btn btn-danger update" data-id="${id}" style="background-color: blue">
+                    <i class="fa fa-wrench update" data-id="${id}"></i>
+				</button>				
+			</li>
+			
             `;
         }
-
+/*
+ ######################## Início da criação da lista dinâmica * ########################*/
         function read() {
             lista.innerHTML = '';
             //Chamada ajax para o servidor na rota /artesaos (Biblioteca Axios)
@@ -1959,7 +1964,12 @@ dgCidadesEstados.prototype = {
                 .catch((error) => {
                     console.log(error);
                 });
-        }
+		}
+/*
+ ######################## Fim da criação da lista dinâmica * ########################*/ 
+	
+/*
+ ######################## Início da operação de delete * ########################*/
         //Passa element como paramento para buscar a classe "delete"
         function del(element) {
             console.log(element);
@@ -1981,3 +1991,52 @@ dgCidadesEstados.prototype = {
             }
 		}
 /*######################## Fim da operação de delete * ########################*/
+
+//			lista.innerHTML += templateLi(element._id, element.nome);
+function getArtesao(element){
+	if (element.target.classList.contains('update')) {
+
+		const id = element.target.dataset.id;
+		console.log(id + ' esse ai que e o ID, manolo ');
+		axios.get(`artesao/${id}`)
+		.then((response) => {
+		
+			console.log('entrei no response');
+			popularEdit(id);
+	
+		})
+		.catch((error) => {
+			console.log('deu merda mano');
+			console.log(error);
+		});
+
+	};
+
+};
+
+function redirect(conteudo){
+	console.log(conteudo + ' to no redirect mano');
+
+	//const _id = id;
+	window.location = "../editarArtesao.html?id="+id;
+
+	popularEdit2();
+
+};
+
+function popularEdit2(){
+	document.getElementById('nome').value = (conteudo.nome);
+};
+
+function popularEdit(id2){
+
+	let id = id2;
+	console.log(id + 'entrei no popularEdit heheheh');
+	//document.getElementById('nome').value = 'teste';
+	let script = document.createElement('script');
+
+	script.src = "http://localhost:3000/artesao/?callback=redirect";
+
+	document.body.appendChild(script);
+	console.log('script');
+}

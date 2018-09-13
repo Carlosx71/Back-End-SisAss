@@ -32,7 +32,42 @@ exports.put = (req, res, next) => {
         id: id,
         item: req.body
     });
-}
+};
+
+exports.put = (req, res, next) => {
+    Artesao
+        .findByIdAndUpdate(req.params.id, {
+            //$set seta o que veio da requisao
+            $set: {
+                nome: req.body.nome,
+                dataDeNascimento: req.body.dataDeNascimento,
+                sexo: req.body.sexo,
+                naturalidadeUF: req.body.naturalidadeUF,
+                naturalidadeMU: req.body.naturalidadeMU,
+                numRG: req.body.numRG,
+                cepArtesao: req.body.cepArtesao,
+                rua: req.body.rua,
+                numeroEnd: req.body.numeroEnd,
+                complemento: req.body.complemento,
+                bairro: req.body.bairro,
+                cidade: req.body.cidade,
+                uf: req.body.uf,
+                emailArtesao: req.body.emailArtesao,
+                celular: req.body.celular,
+                telefone: req.body.telefone
+            }
+        }).then(x => {
+            res.status(201).send({
+                message: 'Artesao atualizado com sucesso'
+            });
+        }).catch(e => {
+            res.status(400).send({
+                message: 'Falha ao atualizar artesao',
+                data: e
+            });
+        });
+};
+
 
 /*//Lista pelo slug aula 18
 exports.getBySlug = (req, res, next) => {
