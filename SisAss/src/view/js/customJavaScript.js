@@ -1975,19 +1975,24 @@ function del(element) {
 	//Verifica se existe a classe "delete"
 	if (element.target.classList.contains('delete')) {
 		//Busca o id que estao no atributo data-id
-		const id = element.target.dataset.id;
-		axios.delete(`artesao/${id}`)
-			.then(function (response) {
-				console.log(response);
-				if (response.status = 200) {
-					//busca o filho na propriedade path e exclui (no caso a li)
-					lista.removeChild(element.path[1]);
-				}
-			})
-			.catch(function (error) {
-				console.log(error);
-			});
+		
+		resultConfirm = confirm('Tem certeza que deseja excluir?');
+		if (resultConfirm == true) {
+			const id = element.target.dataset.id;
+			axios.delete(`artesao/${id}`)
+				.then(function (response) {
+					console.log(response);
+					if (response.status = 200) {
+						//busca o filho na propriedade path e exclui (no caso a li)
+						lista.removeChild(element.path[1]);
+					}
+				})
+				.catch(function (error) {
+					console.log(error);
+				});
+		}
 	}
+	location.reload();
 }
 /*######################## Fim da operação de delete * ########################*/
 
