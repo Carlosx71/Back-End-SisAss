@@ -18,6 +18,8 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	 crossorigin="anonymous">
 	<link rel="shortcut icon" type="image/x-icon" href="img/siassVerde.png" />
+	<!--API AXIOS-->
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<link rel="stylesheet" href="css/base.css">
 	<title>SiAss</title>
 </head>
@@ -29,11 +31,11 @@
 			<div class="container">
 				<a class="navbar-brand" href="index.html">
 					<div class="imgNav alinLogo">
-						<img src="img/siassVerde.png" class="img-responsive" alt="Logo da Siass">
+						<img src="img/siassVerde.png" class="img-responsive" alt="Logo da Siass"/>
 					</div>
 				</a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-				 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+				 aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
 
@@ -41,8 +43,8 @@
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item active"><a class="nav-link" href="index.html"> <i class="fas fa-home"></i>Inicio <span class="sr-only">(current)</span>
 							</a></li>
-						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-							 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-user"></i> Artesãos
+						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+							 aria-haspopup="true" aria-expanded="false"> <i class="fas fa-user"></i> Artesãos
 							</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<a class="dropdown-item" href="cadastroArtesao.html"> <i class="fas fa-user-plus"></i> Cadastro de Artesãos
@@ -52,8 +54,8 @@
 								</a>
 							</div>
 						</li>
-						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-							 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-boxes"></i> Produtos
+						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+							 aria-haspopup="true" aria-expanded="false"> <i class="fas fa-boxes"></i> Produtos
 							</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<a class="dropdown-item" href="cadastroProduto.html"> <i class="fas fa-box-open"></i> Cadastrar Produto
@@ -63,8 +65,8 @@
 								</a>
 							</div>
 						</li>
-						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-							 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-calendar-alt"></i>
+						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+							 aria-haspopup="true" aria-expanded="false"> <i class="fas fa-calendar-alt"></i>
 								Eventos
 							</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -93,15 +95,23 @@
 
 	<div class="container">
 		<div class="containerBody">
+			<script type="text/javascript">
+				window.onload = function () {
+					escrever(artesaoJson);
+				}
+			</script>
 			<h2>Editar Artesão</h2>
 			<hr>
 			<h4>Dados Pessoas</h4>
 			<br>
-			<form class="needs-validation" action="/artesao" method="POST">
+			<!--action="/artesao" method="POST"-->
+			<form class="needs-validation" method="POST" id="frmAction">
+				<!--<input type="hidden" name="_METHOD" value="PUT"/>-->
+
 				<div class="form-row">
 					<div class="col-md-4 mb-3">
-						<label for="nome">Nome do Artesão</label> <input type="text" class="form-control" id="nome" name="nome"
-						 placeholder="Nome do Artesao" required>
+						<label for="nome">Nome do Artesão</label> <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome do Artesao"
+						 required>
 						<div class="valid-tooltip">Campo Obrigatório</div>
 					</div>
 					<div class="col-md-4 mb-3">
@@ -112,14 +122,13 @@
 					<div class="col-md-4 mb-3">
 						Sexo: <br>
 						<div class="form-check">
-							<input class="form-check-input" type="radio" name="sexo" id="sexoMasculino" name="sexo" value="Masculino"
-							 checked>
+							<input class="form-check-input" type="radio" name="sexo" id="sexoMasculino" name="sexo" value="Masculino" checked>
 							<label class="form-check-label" for="sexoMasculino">
 								Masculino </label>
 						</div>
 						<div class="form-check">
-							<input class="form-check-input" type="radio" name="sexo" id="sexoFeminino" name="sexo" value="Feminino"> <label
-							 class="form-check-label" for="sexoFeminino"> Feminino </label>
+							<input class="form-check-input" type="radio" name="sexo" id="sexoFeminino" name="sexo" value="Feminino"> <label class="form-check-label"
+							 for="sexoFeminino"> Feminino </label>
 						</div>
 					</div>
 
@@ -138,8 +147,8 @@
 						</select>
 					</div>
 					<div class="col-md-4 mb-3">
-						<label for="numRG">Número de RG</label> <input type="text " class="form-control " id="numRG" name="numRG"
-						 placeholder="RG " required>
+						<label for="numRG">Número de RG</label> <input type="text " class="form-control " id="numRG" name="numRG" placeholder="RG "
+						 required>
 						<div class="invalid-tooltip ">Por favor, insira o RG</div>
 					</div>
 				</div>
@@ -163,13 +172,13 @@
 						<div class="invalid-tooltip">Por favor, insira uma rua</div>
 					</div>
 					<div class="col-md-1 mb-3">
-						<label for="numeroEnd">Nº</label> <input type="text" class="form-control " id="numeroEnd" name="numeroEnd"
-						 placeholder="Nº" required>
+						<label for="numeroEnd">Nº</label> <input type="text" class="form-control " id="numeroEnd" name="numeroEnd" placeholder="Nº"
+						 required>
 						<div class="invalid-tooltip">Por favor, insira um rua</div>
 					</div>
 					<div class="col-md-2 mb-3">
 						<label for="complemento">Complemento</label> <input type="text" class="form-control " id="complemento" name="complemento"
-						 placeholder="Complemento" required>
+						 placeholder="Complemento">
 						<div class="invalid-tooltip">Por favor, insira um número</div>
 					</div>
 				</div>
@@ -185,8 +194,7 @@
 						<div class="invalid-tooltip ">Insira um estado válido.</div>
 					</div>
 					<div class="col-md-3 mb-3">
-						<label for="uf">Estado</label> <input type="text" class="form-control" id="uf" name="uf" placeholder="Estado"
-						 required>
+						<label for="uf">Estado</label> <input type="text" class="form-control" id="uf" name="uf" placeholder="Estado" required>
 						<div class="invalid-tooltip ">Insira um estado válido.</div>
 					</div>
 
@@ -200,12 +208,10 @@
 						 placeholder="E-mail">
 					</div>
 					<div class="col-md-4 mb-3">
-						<label for="celular">Celular</label> <input type="email " class="form-control" id="celular" name="celular"
-						 placeholder="Celular">
+						<label for="celular">Celular</label> <input type="text" class="form-control" id="celular" name="celular" placeholder="Celular"/>
 					</div>
 					<div class="col-md-4 mb-3">
-						<label for="telefone">Telefone</label> <input type="email " class="form-control" id="telefone" name="telefone"
-						 placeholder="Telefone">
+						<label for="telefone">Telefone</label> <input type="text " class="form-control" id="telefone" name="telefone" placeholder="Telefone"/>
 					</div>
 				</div>
 				<hr>
@@ -217,6 +223,9 @@
 	<br>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script>
+		document.getElementById('frmAction').action='artesao/'+id;	
+	</script>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 	 crossorigin="anonymous "></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
