@@ -1937,15 +1937,16 @@ window.onload = () => {
 
 function templateLi(id, nome) {
 	return `
-            <li class="list-group-item"><b>${nome}</b>
+			<li class="list-group-item"><b>${nome}</b>
+				<div class"editDelete">
                 <button type="button" class="btn btn-danger delete" data-id="${id}">
                     <i class="fa fa-trash delete" data-id="${id}"></i>
 				</button>
                 <button type="button" class="btn btn-danger update" data-id="${id}" style="background-color: blue">
                     <i class="fa fa-wrench update" data-id="${id}"></i>
-				</button>				
+				</button>
+				</div>				
 			</li>
-			
             `;
 }
 /*
@@ -1985,14 +1986,16 @@ function del(element) {
 					if (response.status = 200) {
 						//busca o filho na propriedade path e exclui (no caso a li)
 						lista.removeChild(element.path[1]);
+						
 					}
 				})
 				.catch(function (error) {
 					console.log(error);
 				});
+				location.reload();
 		}
 	}
-	location.reload();
+
 }
 /*######################## Fim da operação de delete * ########################*/
 
@@ -2006,8 +2009,8 @@ function getArtesao(element) {
 			.then((response) => {
 
 				console.log('entrei no response');
+				
 				redirect(id);
-
 			})
 			.catch((error) => {
 				console.log('deu merda mano');
@@ -2015,6 +2018,7 @@ function getArtesao(element) {
 			});
 
 	};
+
 
 };
 

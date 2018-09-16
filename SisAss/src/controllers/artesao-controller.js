@@ -1,6 +1,7 @@
 //Importando a model
 const mongoose = require('mongoose');
 const Artesao = mongoose.model('Artesao');
+const path = require('path'); 
 
 exports.get = (req, res, next) => {
     Artesao.find()
@@ -10,6 +11,13 @@ exports.get = (req, res, next) => {
             res.status(400).send(e);
         });
 };
+
+
+exports.cadasSucess = (req, res, next) => {
+
+    res.sendFile(200, path.resolve('../view/cadastroSucessoArtesao.html'));
+};
+
 
 //Rotas
 //Rota de criação //Status 201 = Create //Movido na aula 12
