@@ -15,10 +15,19 @@ exports.get = (req, res, next) => {
 
 exports.cadasSucess = (req, res, next) => {
 
-    res.sendFile(200, path.resolve('../view/cadastroSucessoArtesao.html'));
+    res.sendFile(200, path.resolve('../public/cadastroSucessoArtesao.html'));
 };
 
+exports.agregaArt = (req, res, next) => {
+    console.log('entrei na rota')
 
+    Artesao.countDocuments({sexo: 'Masculino'}, ( err, count) => {
+        //res.sendStatus(200).send(count);
+        res.status(200).json({ count: count });
+        console.log( "Number of sexo masc:", count );
+    })
+
+};
 //Rotas
 //Rota de criação //Status 201 = Create //Movido na aula 12
 exports.post = (req, res, next) => {
@@ -42,7 +51,7 @@ exports.post = (req, res, next) => {
     });
 }*/
 
-exports.post = (req, res, next) => {
+exports.update = (req, res, next) => {
     Artesao
         .findByIdAndUpdate(req.params.id, {
             //$set seta o que veio da requisao
@@ -65,9 +74,9 @@ exports.post = (req, res, next) => {
                 telefone: req.body.telefone
             }
         }).then(x => {
-            res.status(201).send({
-                message: 'Artesao atualizado com sucesso'
-            });
+           //res.path.resolve();
+           res.redirect('http://localhost/cadastroSucessoArtesao.html');
+            //res.status(201).send({                message: 'Artesao atualizado com sucesso'            });
         }).catch(e => {
             res.status(400).send({
                 message: 'Falha ao atualizar artesao',
@@ -145,11 +154,11 @@ exports.delete = (req, res, next) => {
         })
         .then(x => {
             res.status(200).send({
-                message: 'Deu certo caralho!!!!'
+                message: 'Artesão excluído com sucesso'
             });
         }).catch(e => {
             res.status(400).send({
-                message: 'Mas que caralho, velho',
+                message: 'Falha ao excluir artesão',
                 data: e
             });
         });
