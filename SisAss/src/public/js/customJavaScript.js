@@ -1928,10 +1928,66 @@ dgCidadesEstados.prototype = {
 //Garanti que a função sera carregada
 window.onload = () => {
 	const listaArtesao = document.querySelector('#lista');
+	const paginacao = document.querySelector('#paginacao');
 	listaArtesao.addEventListener('click', del);
 	listaArtesao.addEventListener('click', getArtesao);
 	read();
+	liPagination();
+
 };
+/*######################## TTemplate da paginação * ########################*/
+function templatePagination(cont) {
+	return `
+	<li class="page-item"><a class="page-link" href="http://localhost/artesao/pagination/${cont}">${cont}</a>
+	</li>
+	`
+}
+function liPagination() {
+	paginacao.innerHTML = '';
+	let cont = 1;
+	axios.get(`artesao/pagination/${count}`)
+		.then((response) => {
+			console.log('entrei no liPagination')
+			console.log(response);
+			response.data.forEach(element => {
+				cont++;
+				paginacao.innerHTML += templatePagination(cont);
+			});
+		})
+		.catch((error) => {
+			console.log('Errao bravo')
+			console.log(error);
+		});
+}
+/*######################## TTemplate da tabela dinâmica * ########################*/
+function templateTableReport(id, cidade, nome, uf, email, cont) {
+	return `
+	
+	<tr>
+		<th scope="row">${cont}</th>
+		<td>${nome}</td>
+		<td>${email}</td>
+		<td>${cidade}</td>
+		<td>${uf}</td>
+	</tr> `;
+}
+
+/* ######################## Início da criação da tabela dinâmica * ########################*/
+function tableReport() {
+	tabelaReport.innerHTML = '';
+	axios.get('/artesao/artAlfabeEst')
+		.then((response) => {
+			console.log(response);
+			let cont = 0;
+			response.data.forEach(element => {
+				cont++;
+				tabelaReport.innerHTML += templateTableReport(element._id, element.cidade, element.nome, element.uf, element.emailArtesao, cont);
+			});
+		})
+		.catch((error) => {
+			console.log(error);
+		});
+}
 /*
  ######################## Criação do Templete da lista* ########################*/
 
@@ -1954,7 +2010,7 @@ function templateLi(id, nome) {
 function read() {
 	lista.innerHTML = '';
 	//Chamada ajax para o servidor na rota /artesaos (Biblioteca Axios)
-	axios.get('/artesao')
+	axios.get('/artesao/artAlfabetica')
 		.then((response) => {
 			console.log(response);
 			response.data.forEach(element => {
@@ -1992,12 +2048,11 @@ function del(element) {
 				.catch(function (error) {
 					console.log(error);
 				});
-			
-		}
+		};
 		location.reload();
-	}
+	};
 
-}
+};
 /*######################## Fim da operação de delete * ########################*/
 
 //			lista.innerHTML += templateLi(element._id, element.nome);
@@ -2037,19 +2092,20 @@ function redirect(id) {
 let queryString = window.location.search;
 let id = queryString.split('=')[1];
 console.log(id + ' tô na pagina do artesão');
-
-let artesaoJson = JSON.parse(server());
+let urlID = "http://localhost/artesao/";
+let artesaoJson = JSON.parse(server(urlID));
 console.log(artesaoJson)
 
 //Traz os arquivo do servidor
-function server() {
+function server(url) {
+	console.log(urlID);
 	var http;
 	var return__;
 	try {
 		http = new XMLHttpRequest();
 		console.log(http);
 		//Inicializando uma requisição
-		http.open("GET", "http://localhost/artesao/" + id, false);
+		http.open("GET", url + id, false);
 		http.onreadystatechange = function (e) {
 			if (http.readyState === 4) {
 				if (http.status === 200) {
@@ -2100,3 +2156,4 @@ function cadasArt() {
 
 	window.location = "cadastroArtesao.html";
 }
+/*################ Fim Redireciona para Cadastrar Artesão##################*/

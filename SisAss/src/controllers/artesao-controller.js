@@ -1,7 +1,23 @@
 //Importando a model
 const mongoose = require('mongoose');
 const Artesao = mongoose.model('Artesao');
-const path = require('path'); 
+//const mongoosePaginate = require('mongoose-paginate');
+//const mongoosePagination = require('mongoose-pagination');
+const path = require('path');
+
+exports.pagination = (req, res) => {
+    const pageRE = req.params.page;
+    const page = parseInt(pageRE);
+    Artesao.paginate({}, { page: page, limit: 10 }, (err, result) => {
+        //console.log(req);
+        if (page > result.pages) {
+            res.status(200).send({ message: 'A pagina passou o limite' })
+        } else {
+            res.status(200).send(result);
+        }
+
+    });
+}
 
 exports.get = (req, res, next) => {
     Artesao.find()
@@ -12,22 +28,45 @@ exports.get = (req, res, next) => {
         });
 };
 
+exports.artAlfabetica = (req, res, next) => {
+    Artesao.find().sort({ nome: 'asc' })
+        .then(data => {
+            res.status(200).send(data);
+        }).catch(e => {
+            res.status(400).send(e);
+        });
+};
+
+exports.artAlfabeEst = (req, res, next) => {
+    Artesao.find().sort({ uf: 'asc' })
+        .then(data => {
+            res.status(200).send(data);
+        }).catch(e => {
+            res.status(400).send(e);
+        });
+};
 
 exports.cadasSucess = (req, res, next) => {
 
     res.sendFile(200, path.resolve('../public/cadastroSucessoArtesao.html'));
 };
 
-exports.agregaArt = (req, res, next) => {
-    console.log('entrei na rota')
-
-    Artesao.countDocuments({sexo: 'Masculino'}, ( err, count) => {
-        //res.sendStatus(200).send(count);
-        res.status(200).json({ count: count });
-        console.log( "Number of sexo masc:", count );
-    })
-
+exports.countMG = (req, res, next) => {
+    Artesao.aggregate([
+        { $group: { _id: { uf: '$uf' }, count: { $sum: 1 } } }], (err, count) => {
+            res.status(200).json(count);
+        });
 };
+
+//Conta todos que estão dentro do count
+//exports.countMG = (req, res, next) => {
+//    console.log('entrei na rota')
+//
+//    Artesao.countDocuments({ uf: 'SP', uf: 'MG' }, (err, count) => {
+//        res.status(200).json({ count: count });
+//        console.log("Number of sexo masc:", count);
+//    });
+//};
 //Rotas
 //Rota de criação //Status 201 = Create //Movido na aula 12
 exports.post = (req, res, next) => {
@@ -35,11 +74,10 @@ exports.post = (req, res, next) => {
     artesao
         .save() //Usado para salvar no mongoodb
         .then(x => {
-            res.status(201).send({ message: 'Artesão cadastrado com sucesso' });
+            res.redirect('http://localhost/cadastroSucessoArtesao.html');
         }).catch(e => {
             res.status(400).send({ message: 'Falha ao cadastrar o artesão', data: e });
         });
-
 };
 
 //movido na aula 12
@@ -74,8 +112,7 @@ exports.update = (req, res, next) => {
                 telefone: req.body.telefone
             }
         }).then(x => {
-           //res.path.resolve();
-           res.redirect('http://localhost/cadastroSucessoArtesao.html');
+            res.redirect('http://localhost/editSucessoArtesao.html');
             //res.status(201).send({                message: 'Artesao atualizado com sucesso'            });
         }).catch(e => {
             res.status(400).send({
@@ -162,5 +199,4 @@ exports.delete = (req, res, next) => {
                 data: e
             });
         });
-
 };
