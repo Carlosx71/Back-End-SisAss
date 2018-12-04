@@ -23,7 +23,8 @@ exports.post = (req, res, next) => {
     product
         .save() //Usado para salvar no mongoodb
         .then(x => {
-            res.status(201).send({ message: 'Produto cadastrado com sucesso' });
+            //res.status(201).send({ message: 'Produto cadastrado com sucesso' });
+            res.redirect('http://localhost/cadastroSucessoProduto.html');
         }).catch(e => {
             res.status(400).send({ message: 'Falha ao cadastrar o produto', data: e });
         });
@@ -82,4 +83,51 @@ exports.getByTag = (req, res, next) => {
 //movido na aula 12
 exports.delete = (req, res, next) => {
     res.status(200).send(req.body);
+};
+
+//Editar artesão
+exports.update = (req, res, next) => {
+    Product
+        .findByIdAndUpdate(req.params.id, {
+            //$set seta o que veio da requisao
+            $set: {
+                product: req.body.product,
+                materiaPrima: req.body.materiaPrima,
+                peso: req.body.peso,
+                artesao: req.body.artesao,
+                description: req.body.description,
+                dimensao: req.body.dimensao,
+                materiaPrima: req.body.materiaPrima,
+                peso: req.body.peso,
+                preco: req.body.preco,
+                quantidade: req.body.quantidade,
+                segmento: req.body.segmento
+            }
+        }).then(x => {
+            res.redirect('http://localhost/editSucessoProduto.html');
+        }).catch(e => {
+            res.status(400).send({
+                message: 'Falha ao atualizar Produto',
+                data: e
+            });
+        });
+};
+
+//Rota de delete
+exports.delete = (req, res, next) => {
+    const { id } = req.params;
+    Product
+        .deleteOne({
+            _id: id
+        })
+        .then(x => {
+            res.status(200).send({
+                message: 'Produto excluído com sucesso'
+            });
+        }).catch(e => {
+            res.status(400).send({
+                message: 'Falha ao excluir produto',
+                data: e
+            });
+        });
 };

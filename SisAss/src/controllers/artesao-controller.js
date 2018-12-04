@@ -17,7 +17,7 @@ exports.pagination = (req, res) => {
         }
 
     });
-}
+};
 
 exports.get = (req, res, next) => {
     Artesao.find()
@@ -51,7 +51,7 @@ exports.cadasSucess = (req, res, next) => {
     res.sendFile(200, path.resolve('../public/cadastroSucessoArtesao.html'));
 };
 
-exports.countMG = (req, res, next) => {
+exports.countEst = (req, res, next) => {
     Artesao.aggregate([
         { $group: { _id: { uf: '$uf' }, count: { $sum: 1 } } }], (err, count) => {
             res.status(200).json(count);
@@ -109,7 +109,8 @@ exports.update = (req, res, next) => {
                 uf: req.body.uf,
                 emailArtesao: req.body.emailArtesao,
                 celular: req.body.celular,
-                telefone: req.body.telefone
+                telefone: req.body.telefone,
+                imgArtesao: req.body.imgArtesao
             }
         }).then(x => {
             res.redirect('http://localhost/editSucessoArtesao.html');

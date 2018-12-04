@@ -22,7 +22,7 @@
     <title>SiAss</title>
 </head>
 
-<body>
+<body onload="artCadas()">
     <header>
         <!--Inicio do navbar-->
         <nav class="navbar navbar-expand-lg navbar-light bg-dark">
@@ -61,9 +61,11 @@
                                     Cadastro de Artesãos
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="relatoriosArtesao.html">
+                                <a class="dropdown-item">                      
+                                    Relatórios</a>
+                                <a class="dropdown-item" href="artesaosReportEstado.html">
                                     <i class="far fa-chart-bar"></i>
-                                    Relatório de Artesãos</a>
+                                    Artesãos por Estado</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -73,15 +75,14 @@
                                 Produtos
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="produtosCadastrados.html">
+                                    <i class="fas fa-list-ul"></i>
+                                    Produtos Cadastrados
+                                </a>
                                 <a class="dropdown-item" href="cadastroProduto.html">
                                     <i class="fas fa-box-open"></i>
                                     Cadastrar Produto
                                 </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">
-                                    <i class="far fa-chart-bar"></i>
-                                    Relatório de Produtos</a>
-                            </div>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -90,43 +91,16 @@
                                 Eventos
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="eventos.html">
+                                <a class="dropdown-item" href="eventosCadastrados.html">
+                                    <i class="fas fa-list-ul"></i>
+                                    Eventos Cadastrados
+                                </a>
+                                <a class="dropdown-item" href="cadastroEventos.html">
                                     <i class="far fa-calendar-alt"></i>
                                     Cadastrar novo Evento
                                 </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">
-                                    <i class="far fa-chart-bar"></i>
-                                    Relatório de Eventos</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-dollar-sign"></i>
-                                Movimentações
-
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="movimentacoes.html">
-                                    <i class="far fa-calendar-alt"></i>
-                                    Entrada e Saída
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">
-                                    <i class="far fa-chart-bar"></i>
-                                    Dashboard</a>
-                            </div>
                         </li>
                     </ul>
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder=" Digite aqui para pesquisar..."
-                            aria-label="Search">
-
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-                            <i class="fas fa-search colorbtn"></i> Pesquisar</button>
-                        <a href="login.html" class="sair">Sair</a>
-                    </form>
                 </div>
             </div>
         </nav>
@@ -135,13 +109,6 @@
     <div class="container">
         <div class="containerBody">
             <h2>Artesãos Cadastrados</h2>
-            <div class="row">
-                <div class="col-md-3 offset-md-9">
-                    <button class="btn btn-primary btnNovo" type="submit" onclick="cadasArt()">
-                        <i class="fas fa-user-plus"></i>
-                    </button>
-                </div>
-            </div>
             <hr>
             <div class="form-row">
                 <div class="col-md-10 mb-3">
@@ -149,24 +116,6 @@
                     </ul>
                 </div>
             </div>
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                    </li>
-                    <span id="paginacao">
-                    </span>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
         </div>
     </div>
 

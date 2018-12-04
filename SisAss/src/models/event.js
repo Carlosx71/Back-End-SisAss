@@ -5,36 +5,20 @@ const Schema = mongoose.Schema;
 
 //const teste = mongoose.Schema({})
 const schema = new Schema({
-    nome:{
+    evento: {
         type: String,
         required: true
     },
-    dataDeNascimento: {
+    dataEvento: {
         type: String,
         required: true
     },
-    sexo: {
+    hora: {
         type: String,
         required: true
     },
-    naturalidadeUF: {
+    cep: {
         type: String,
-        required: true
-    },
-    naturalidadeMU: {
-        type: String,
-        required: true
-    },
-    numRG: {
-        type: Number,
-        required: true
-    },   
-    imgArtesao: {
-        type: String,
-        required: true
-    },
-    cepArtesao: {
-        type: Number,
         required: true
     },
     rua: {
@@ -42,7 +26,7 @@ const schema = new Schema({
         required: true
     },
     numeroEnd: {
-        type: String,
+        type: Number,
         required: true
     },
     complemento: {
@@ -58,33 +42,20 @@ const schema = new Schema({
         required: true
     },
     uf: {
-        type:String,
-        required: true
-    },
-    emailArtesao: {
         type: String,
-        required: true
-    },
-    celular: {
-        type: String,
-        required: true
-    },
-    telefone: {
-        type: Number,
-        required: true
-    },
-    dataCriacao: {
-        type: Date,
-        default: Date.now
+        required: false
     },
     active: {
         type: Boolean,
         required: true,
         default: true
+    },
+    dataCriacao: {
+        type: Date,
+        default: Date.now
     }
-
 });
 schema.plugin(mongoosePaginate);
-const Model = mongoose.model('Model',  schema)
-//Exportando o schema de artesão
-module.exports = mongoose.model('Artesao', schema);
+//const Model = mongoose.model('Model',  schema)
+//Exportando o schema de event
+module.exports = mongoose.model('Event', schema);

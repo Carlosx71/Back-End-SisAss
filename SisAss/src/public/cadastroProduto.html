@@ -5,7 +5,14 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
     <!--Icones Awsome-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
         crossorigin="anonymous">
@@ -58,9 +65,11 @@
                                     Cadastro de Artesãos
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="relatoriosArtesao.html">
+                                <a class="dropdown-item">                      
+                                    Relatórios</a>
+                                <a class="dropdown-item" href="artesaosReportEstado.html">
                                     <i class="far fa-chart-bar"></i>
-                                    Relatório de Artesãos</a>
+                                    Artesãos por Estado</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -70,15 +79,14 @@
                                 Produtos
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="produtosCadastrados.html">
+                                    <i class="fas fa-list-ul"></i>
+                                    Produtos Cadastrados
+                                </a>
                                 <a class="dropdown-item" href="cadastroProduto.html">
                                     <i class="fas fa-box-open"></i>
                                     Cadastrar Produto
                                 </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">
-                                    <i class="far fa-chart-bar"></i>
-                                    Relatório de Produtos</a>
-                            </div>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -87,43 +95,16 @@
                                 Eventos
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="eventos.html">
+                                <a class="dropdown-item" href="eventosCadastrados.html">
+                                    <i class="fas fa-list-ul"></i>
+                                    Eventos Cadastrados
+                                </a>
+                                <a class="dropdown-item" href="cadastroEventos.html">
                                     <i class="far fa-calendar-alt"></i>
                                     Cadastrar novo Evento
                                 </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">
-                                    <i class="far fa-chart-bar"></i>
-                                    Relatório de Eventos</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-dollar-sign"></i>
-                                Movimentações
-
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="movimentacoes.html">
-                                    <i class="far fa-calendar-alt"></i>
-                                    Entrada e Saída
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">
-                                    <i class="far fa-chart-bar"></i>
-                                    Dashboard</a>
-                            </div>
                         </li>
                     </ul>
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder=" Digite aqui para pesquisar..."
-                            aria-label="Search">
-
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-                            <i class="fas fa-search colorbtn"></i> Pesquisar</button>
-                        <a href="login.html" class="sair">Sair</a>
-                    </form>
                 </div>
             </div>
         </nav>
@@ -190,6 +171,37 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <div class="custom-file">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="imgUpload" lang="pt-BR" required>
+                                <label class="custom-file-label" for="customFileLang">Escolha a foto do produto</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <img id="imgProd" style="width: 300px">
+                <textarea id="base64img" name="imgProd" style="display:none;"></textarea>
+                <script>
+                    $(function () {
+                        $('#imgUpload').change(function () {
+                            const file = $(this)[0].files[0]
+                            const fileReader = new FileReader()
+                            fileReader.onloadend = function () {
+                                //seta a img para carregar
+                                $('#imgProd').attr('src', fileReader.result)
+
+                                const imgProd = fileReader.result;
+                                $('#base64img').val(imgProd)
+                                console.log(imgProd);
+                            }
+                            fileReader.readAsDataURL(file)
+                        })
+                    });
+                </script>
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
                         <label for="artesao">Artesão</label>
@@ -208,18 +220,14 @@
                     </div>
 
                 </div>
-                <button class="btn btn-primary" type="submit">Cadastrar</button>
+                <div class="row">
+                    <div class="col-md-3 offset-md-10">
+                        <button class="btn btn-primary" type="submit">Cadastrar</button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-        crossorigin="anonymous"></script>
 </body>
 
 </html>

@@ -13,8 +13,9 @@
         crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
-    <link rel="shortcut icon" type="image/x-icon" href="img/siassVerde.png" />
+
     <link rel="stylesheet" href="css/base.css">
+    <link rel="shortcut icon" type="image/x-icon" href="img/siassVerde.png" />
     <title>SiAss</title>
 </head>
 
@@ -57,9 +58,11 @@
                                     Cadastro de Artesãos
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item">                      
+                                    Relatórios</a>
+                                <a class="dropdown-item" href="artesaosReportEstado.html">
                                     <i class="far fa-chart-bar"></i>
-                                    Relatório de Artesãos</a>
+                                    Artesãos por Estado</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -69,15 +72,14 @@
                                 Produtos
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="produtosCadastrados.html">
+                                    <i class="fas fa-list-ul"></i>
+                                    Produtos Cadastrados
+                                </a>
                                 <a class="dropdown-item" href="cadastroProduto.html">
                                     <i class="fas fa-box-open"></i>
                                     Cadastrar Produto
                                 </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">
-                                    <i class="far fa-chart-bar"></i>
-                                    Relatório de Produtos</a>
-                            </div>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -86,51 +88,34 @@
                                 Eventos
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="eventos.html">
+                                <a class="dropdown-item" href="eventosCadastrados.html">
+                                    <i class="fas fa-list-ul"></i>
+                                    Eventos Cadastrados
+                                </a>
+                                <a class="dropdown-item" href="cadastroEventos.html">
                                     <i class="far fa-calendar-alt"></i>
                                     Cadastrar novo Evento
                                 </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">
-                                    <i class="far fa-chart-bar"></i>
-                                    Relatório de Eventos</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-dollar-sign"></i>
-                                Movimentações
-
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="movimentacoes.html">
-                                    <i class="far fa-calendar-alt"></i>
-                                    Entrada e Saída
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">
-                                    <i class="far fa-chart-bar"></i>
-                                    Dashboard</a>
-                            </div>
                         </li>
                     </ul>
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder=" Digite aqui para pesquisar..."
-                            aria-label="Search">
-
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-                            <i class="fas fa-search colorbtn"></i> Pesquisar</button>
-                        <a href="login.html" class="sair">Sair</a>
-                    </form>
                 </div>
             </div>
         </nav>
     </header>
 
-    <!--Inicio do container-->
     <div class="container">
-        <h1>User</h1>
+        <div class="containerSucess">
+            <div class="containerBody">
+                <img src="img/icone_ok1.png" alt="Atualizado com Sucesso" class="imgSucess">
+                <br>
+                <div class="atuaSucess">
+                    <b>Produto Atualizado com Sucesso</b>
+                    <div>
+                        <a href="produtosCadastrados.html">Voltar para lista de produtos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Optional JavaScript -->

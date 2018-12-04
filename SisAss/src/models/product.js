@@ -35,6 +35,10 @@ const schema = new Schema({
     dimensao: {
         type: String,
         required: true
+    },   
+    imgProd: {
+        type: String,
+        required: true
     },
     segmento: {
         type: String,
@@ -48,15 +52,19 @@ const schema = new Schema({
         type: Number,
         required: true
     },
+    artesao: {
+        type: String,
+        required: true
+    },
     active: {
         type: Boolean,
         required: true,
         default: true
     },
-    tags: [{ // tags é um array
-        type: String,
-        required: true
-    }]
+    dataCriacao: {
+        type: Date,
+        default: Date.now
+    }
 });
 
 //Exportando o schema aula 15

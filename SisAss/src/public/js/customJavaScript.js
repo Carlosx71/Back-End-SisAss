@@ -1926,22 +1926,77 @@ dgCidadesEstados.prototype = {
  */
 
 //Garanti que a função sera carregada
-window.onload = () => {
+function artCadas() {
 	const listaArtesao = document.querySelector('#lista');
 	const paginacao = document.querySelector('#paginacao');
-	listaArtesao.addEventListener('click', del);
-	listaArtesao.addEventListener('click', getArtesao);
-	read();
-	liPagination();
-
+	listaArtesao.addEventListener('click', delArtesao);
+	listaArtesao.addEventListener('click', ediArt);
+	liArt();
+	//liPagination();
 };
-/*######################## TTemplate da paginação * ########################*/
-function templatePagination(cont) {
-	return `
-	<li class="page-item"><a class="page-link" href="http://localhost/artesao/pagination/${cont}">${cont}</a>
-	</li>
-	`
-}
+/*######################## inícia na pagina de produtos cadastrados ########################*/
+function prodCadas(){
+	const listaProd = document.querySelector('#listaProd');
+	listaProd.addEventListener('click', delProd);
+	listaProd.addEventListener('click', ediProd);
+	liProd();
+};
+/*######################## inícia na pagina de eventos cadastrados ########################*/
+function eventCadas() {  
+	const listaEvent = document.querySelector('#listaEvent');
+	listaEvent.addEventListener('click', delEvent);
+	listaEvent.addEventListener('click', editarEvento);
+	liEvento();
+};
+
+/* ######################## Início da criação da lista dinâmica * ########################*/
+function liArt() {
+	lista.innerHTML = '';
+	//Chamada ajax para o servidor na rota /artesaos (Biblioteca Axios)
+	axios.get('/artesao/artAlfabetica')
+		.then((response) => {
+			console.log(response);
+			response.data.forEach(element => {
+				lista.innerHTML += templateLi(element._id, element.nome);
+			});
+		})
+		.catch((error) => {
+			console.log(error);
+		});
+};
+
+/*######################## Criação lista de produtos ########################*/
+function liProd() {
+	listaProd.innerHTML = '';
+	//Chamada ajax para o servidor na rota /products (Biblioteca Axios)
+	axios.get('/products')
+		.then((response) => {
+			console.log(response);
+			response.data.forEach(element => {
+				listaProd.innerHTML += templateLiProd(element._id, element.product);
+			});
+		})
+		.catch((error) => {
+			console.log(error);
+		});
+};
+
+/* ######################## Início da criação da lista dinâmica * ########################*/
+function liEvento() {
+	listaEvent.innerHTML = '';
+	//Chamada ajax para o servidor na rota /artesaos (Biblioteca Axios)
+	axios.get('/event')
+		.then((response) => {
+			console.log(response);
+			response.data.forEach(element => {
+				listaEvent.innerHTML += templateLiEvent(element._id, element.evento);
+			});
+		})
+		.catch((error) => {
+			console.log(error);
+		});
+};
+
 function liPagination() {
 	paginacao.innerHTML = '';
 	let cont = 1;
@@ -1959,18 +2014,6 @@ function liPagination() {
 			console.log(error);
 		});
 }
-/*######################## TTemplate da tabela dinâmica * ########################*/
-function templateTableReport(id, cidade, nome, uf, email, cont) {
-	return `
-	
-	<tr>
-		<th scope="row">${cont}</th>
-		<td>${nome}</td>
-		<td>${email}</td>
-		<td>${cidade}</td>
-		<td>${uf}</td>
-	</tr> `;
-}
 
 /* ######################## Início da criação da tabela dinâmica * ########################*/
 function tableReport() {
@@ -1987,9 +2030,46 @@ function tableReport() {
 		.catch((error) => {
 			console.log(error);
 		});
-}
-/*
- ######################## Criação do Templete da lista* ########################*/
+};
+
+/*######################## Template da paginação * ########################*/
+function templatePagination(cont) {
+	return `
+	<li class="page-item"><a class="page-link" href="http://localhost/artesao/pagination/${cont}">${cont}</a>
+	</li>
+	`
+};
+
+/*######################## Template da lista de Produto * ########################*/
+function templateLiProd(id, product) {
+	return `
+			<li class="list-group-item"><b>${product}</b>
+				<div class="editDelete">
+                <button type="button" class="btn btn-danger delete" data-id="${id}">
+                    <i class="fa fa-trash delete" data-id="${id}"></i>
+				</button>
+                <button type="button" class="btn btn-danger update" data-id="${id}" style="background-color: blue">
+                    <i class="fa fa-wrench update" data-id="${id}"></i>
+				</button>
+				</div>				
+			</li>
+            `;
+};
+
+/*######################## Template da tabela dinâmica * ########################*/
+function templateTableReport(id, cidade, nome, uf, email, cont) {
+	return `
+	
+	<tr>
+		<th scope="row">${cont}</th>
+		<td>${nome}</td>
+		<td>${email}</td>
+		<td>${cidade}</td>
+		<td>${uf}</td>
+	</tr> `;
+};
+
+/* ######################## Criação do Templete da lista* ########################*/
 
 function templateLi(id, nome) {
 	return `
@@ -2004,35 +2084,32 @@ function templateLi(id, nome) {
 				</div>				
 			</li>
             `;
-}
-/*
- ######################## Início da criação da lista dinâmica * ########################*/
-function read() {
-	lista.innerHTML = '';
-	//Chamada ajax para o servidor na rota /artesaos (Biblioteca Axios)
-	axios.get('/artesao/artAlfabetica')
-		.then((response) => {
-			console.log(response);
-			response.data.forEach(element => {
-				lista.innerHTML += templateLi(element._id, element.nome);
-			});
-		})
-		.catch((error) => {
-			console.log(error);
-		});
-}
-/*
- ######################## Fim da criação da lista dinâmica * ########################*/
+};
+
+/* ######################## Criação do Templete da lista* ########################*/
+function templateLiEvent(id, evento) {
+	return `
+			<li class="list-group-item"><b>${evento}</b>
+				<div class"editDelete">
+                <button type="button" class="btn btn-danger delete" data-id="${id}">
+                    <i class="fa fa-trash delete" data-id="${id}"></i>
+				</button>
+                <button type="button" class="btn btn-danger update" data-id="${id}" style="background-color: blue">
+                    <i class="fa fa-wrench update" data-id="${id}"></i>
+				</button>
+				</div>				
+			</li>
+            `;
+};
 
 /*
- ######################## Início da operação de delete * ########################*/
+ ######################## Início da operação de delete  ########################*/
 //Passa element como paramento para buscar a classe "delete"
-function del(element) {
+function delArtesao(element) {
 	console.log(element);
 	//Verifica se existe a classe "delete"
 	if (element.target.classList.contains('delete')) {
 		//Busca o id que estao no atributo data-id
-
 		resultConfirm = confirm('Tem certeza que deseja excluir?');
 		if (resultConfirm == true) {
 			const id = element.target.dataset.id;
@@ -2042,7 +2119,6 @@ function del(element) {
 					if (response.status = 200) {
 						//busca o filho na propriedade path e exclui (no caso a li)
 						lista.removeChild(element.path[1]);
-
 					}
 				})
 				.catch(function (error) {
@@ -2051,66 +2127,150 @@ function del(element) {
 		};
 		location.reload();
 	};
-
 };
-/*######################## Fim da operação de delete * ########################*/
 
-//			lista.innerHTML += templateLi(element._id, element.nome);
-function getArtesao(element) {
+function delProd(element) {
+	console.log(element);
+	//Verifica se existe a classe "delete"
+	if (element.target.classList.contains('delete')) {
+		//Busca o id que estao no atributo data-id
+		resultConfirm = confirm('Tem certeza que deseja excluir?');
+		if (resultConfirm == true) {
+			const id = element.target.dataset.id;
+			axios.delete(`products/${id}`)
+				.then(function (response) {
+					console.log(response);
+					if (response.status = 200) {
+						//busca o filho na propriedade path e exclui (no caso a li)
+						lista.removeChild(element.path[1]);
+					}
+				})
+				.catch(function (error) {
+					console.log(error);
+				});
+		};
+		location.reload();
+	};
+};
+
+function delEvent(element) {
+	console.log(element);
+	//Verifica se existe a classe "delete"
+	if (element.target.classList.contains('delete')) {
+		//Busca o id que estao no atributo data-id
+		resultConfirm = confirm('Tem certeza que deseja excluir?');
+		if (resultConfirm == true) {
+			const id = element.target.dataset.id;
+			axios.delete(`event/${id}`)
+				.then(function (response) {
+					console.log(response);
+					if (response.status = 200) {
+						//busca o filho na propriedade path e exclui (no caso a li)
+						lista.removeChild(element.path[1]);
+					}
+				})
+				.catch(function (error) {
+					console.log(error);
+				});
+		};
+		location.reload();
+	};
+};
+
+/*######################## Início da operação de editar ########################*/
+function ediArt(element) {
 	if (element.target.classList.contains('update')) {
-
 		const id = element.target.dataset.id;
 		console.log(id + ' esse ai que e o ID, manolo ');
 		axios.get(`artesao/${id}`)
 			.then((response) => {
-
-				console.log('entrei no response');
-
-				redirect(id);
+				redirectEditArt(id);
 			})
 			.catch((error) => {
-				console.log('deu merda mano');
 				console.log(error);
 			});
-
 	};
-
-
 };
 
-function redirect(id) {
+function ediProd(element) {
+	if (element.target.classList.contains('update')) {
+		const id = element.target.dataset.id;
+		console.log(id + ' esse ai que e o ID do produto, manolo ');
+		axios.get(`products/${id}`)
+			.then((response) => {
+				redirectEditProd(id);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
+};
+
+function editarEvento(element) {
+	if (element.target.classList.contains('update')) {
+		const id = element.target.dataset.id;
+		console.log(id + ' esse ai que e o ID do produto, manolo ');
+		axios.get(`event/${id}`)
+			.then((response) => {
+				redirectEditEvent(id);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
+};
+
+/*######################## Redirecionamento ########################*/
+function redirectEditArt(id) {
 	window.location = "../editarArtesao.html?id=" + id;
 };
 
+function redirectEditProd(id) {  
+	window.location = "../editarProdutos.html?id=" + id;
+};
 
-/*######################## Preenchimento do fomulario ########################*/
+function redirectEditEvent(id) {  
+	window.location = "../editarEvento.html?id=" + id;
+};
+
 //Busca o id da pagina anterior
-
-
-
-//let artesaoJson = JSON.parse(testeServer());
 let queryString = window.location.search;
 let id = queryString.split('=')[1];
-console.log(id + ' tô na pagina do artesão');
-let urlID = "http://localhost/artesao/";
-let artesaoJson = JSON.parse(server(urlID));
-console.log(artesaoJson)
+
+//Chamado na tela de edição do Artesão
+function createJsonArtesao(){
+	console.log('entrei no create do artesao')
+	let urlID = "http://localhost/artesao/";
+	let artesaoJson = JSON.parse(server(urlID));
+	escreverArt(artesaoJson);
+};
+
+//Chamado na tela de edição do Produto
+function createJsonProduct(){
+	let urlProd = "http://localhost/products/";
+	let productJson = JSON.parse(server(urlProd));
+	escreverProd(productJson);
+};
+
+//Chamado na tela de edição do Evento
+function createJsonEvent(){
+	let urlEvent = "http://localhost/event/";
+	let eventJson = JSON.parse(server(urlEvent));
+	escreverEvent(eventJson);
+}
 
 //Traz os arquivo do servidor
 function server(url) {
-	console.log(urlID);
 	var http;
 	var return__;
 	try {
 		http = new XMLHttpRequest();
-		console.log(http);
 		//Inicializando uma requisição
 		http.open("GET", url + id, false);
 		http.onreadystatechange = function (e) {
 			if (http.readyState === 4) {
 				if (http.status === 200) {
 					return__ = http.responseText;
-					console.log(return__);
 				} else {
 					console.log('error: ' + http.statusText);
 				}
@@ -2122,10 +2282,10 @@ function server(url) {
 	catch (e) {
 		console.log(e);
 	}
-}
+};
 
-//console.log(artesaoJson);
-function escrever(conteudo) {
+/*######################## Preenchimento do fomulario ########################*/
+function escreverArt(conteudo) {
 	console.log(conteudo);
 	document.getElementById('nome').value = (conteudo.nome);
 	document.getElementById('dataDeNascimento').value = (conteudo.dataDeNascimento);
@@ -2147,13 +2307,37 @@ function escrever(conteudo) {
 	document.getElementById('emailArtesao').value = (conteudo.emailArtesao);
 	document.getElementById('celular').value = (conteudo.celular);
 	document.getElementById('telefone').value = (conteudo.telefone);
+	document.getElementById('imgArt').src = (conteudo.imgArtesao);
 }
-/*######################## Fim do preenchimento ########################*/
 
+function escreverProd(conteudo) {
+	console.log(conteudo);
+	document.getElementById('edProduct').value = (conteudo.product);
+	document.getElementById('edMateriaPrima').value = (conteudo.materiaPrima);
+	document.getElementById('edPeso').value = (conteudo.peso);
+	document.getElementById('edDimensao').value = (conteudo.dimensao);
+	document.getElementById('edSegmento').value = (conteudo.segmento);
+	document.getElementById('edPreco').value = (conteudo.preco);
+	document.getElementById('edDescription').value = (conteudo.description);
+	document.getElementById('edArtesao').value = (conteudo.artesao);
+	document.getElementById('edQuantidade').value = (conteudo.quantidade);
+	document.getElementById('imgProd').src = (conteudo.imgProd);
+};
+
+function escreverEvent(conteudo) {
+	console.log(conteudo);
+	document.getElementById('evento').value = (conteudo.evento);
+	document.getElementById('dataEvento').value = (conteudo.dataEvento);
+	document.getElementById('horaEvento').value = (conteudo.hora);
+	document.getElementById('cep').value = (conteudo.cep);
+	document.getElementById('rua').value = (conteudo.rua);
+	document.getElementById('numeroEnd').value = (conteudo.numeroEnd);
+	document.getElementById('complemento').value = (conteudo.complemento);
+	document.getElementById('bairro').value = (conteudo.bairro);
+	document.getElementById('cidade').value = (conteudo.cidade);
+	document.getElementById('uf').value = (conteudo.uf);
+};
 /*################ Redireciona para Cadastrar Artesão ##################*/
-
 function cadasArt() {
-
 	window.location = "cadastroArtesao.html";
-}
-/*################ Fim Redireciona para Cadastrar Artesão##################*/
+};
